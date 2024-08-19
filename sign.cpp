@@ -6,8 +6,8 @@ bool sign_efi_files(std::filesystem::path &dir){
     bool errors = false;
     for(const auto &entry : std::filesystem::recursive_directory_iterator(dir))
     {
-        if(entry.is_regular_file() && entry.path().extension() == ".efi" || 
-        entry.path().extension() == ".mui" || entry.path().extension() == ".dll")
+        if(entry.is_regular_file() && (entry.path().extension() == ".efi" || 
+        entry.path().extension() == ".mui" || entry.path().extension() == ".dll"))
         {
             std::string command = "sbctl sign " + entry.path().string();
             std::cout << "Signing: " << entry.path() << std::endl;
